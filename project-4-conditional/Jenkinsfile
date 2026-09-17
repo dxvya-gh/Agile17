@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    parameters {
+        booleanParam(
+            name: 'RUN_EXTRA_CHECK',
+            defaultValue: false,
+            description: 'Run the extra validation check'
+        )
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                bat 'python app.py'
+            }
+        }
+
+        stage('Extra Check') {
+            when {
+                expression {
+                    params.RUN_EXTRA_CHECK
+                }
+            }
+            steps {
+                echo 'Extra validation check executed.'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Application deployment completed.'
+            }
+        }
+    }
+}
