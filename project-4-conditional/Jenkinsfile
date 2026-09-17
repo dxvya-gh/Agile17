@@ -12,7 +12,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'python app.py'
+                dir('project-4-conditional') {
+                    bat 'python app.py'
+                }
             }
         }
 
