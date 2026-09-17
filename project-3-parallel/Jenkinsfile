@@ -6,13 +6,17 @@ pipeline {
             parallel {
                 stage('Frontend Check') {
                     steps {
-                        bat 'python frontend_check.py'
+                        dir('project-3-parallel') {
+                            bat 'python frontend_check.py'
+                        }
                     }
                 }
 
                 stage('Backend Check') {
                     steps {
-                        bat 'python backend_check.py'
+                        dir('project-3-parallel') {
+                            bat 'python backend_check.py'
+                        }
                     }
                 }
             }
