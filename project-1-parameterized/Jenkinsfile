@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    parameters {
+        choice(
+            name: 'ENVIRONMENT',
+            choices: ['dev', 'staging', 'prod'],
+            description: 'Select the environment to deploy'
+        )
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo "Checking out code..."
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "Building for ${params.ENVIRONMENT} environment..."
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "Deploying to ${params.ENVIRONMENT} environment..."
+            }
+        }
+    }
+}
